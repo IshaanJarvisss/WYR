@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYR Olympics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-pink: #ff00e5;
+            --moon-white: #f0f0f0;
+            --bg-dark: #050505;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* The Neon Moon Background */
+        .moon {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: var(--moon-white);
+            border-radius: 50%;
+            box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.3), 0 0 100px 20px rgba(0, 242, 255, 0.2);
+            z-index: -1;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .page { display: none; animation: fadeIn 0.5s ease; }
+        .active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan); margin-bottom: 20px; }
+        h2 { font-family: 'Orbitron', sans-serif; margin: 20px 0; color: white; }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid var(--neon-cyan);
+            background: transparent;
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--neon-cyan);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .btn-small { padding: 10px; font-size: 0.8rem; margin: 5px 0; border-color: var(--neon-pink); color: var(--neon-pink); }
+        .btn-small:hover { background: var(--neon-pink); color: white; box-shadow: 0 0 15px var(--neon-pink); }
+
+        /* Forms */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .event-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .status-box {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 1px solid #444;
+        }
+
+        .participating { background: var(--neon-cyan); color: black; border-color: var(--neon-cyan); }
+
+        /* Leaderboard & Participants */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #222; }
+        th { color: var(--neon-cyan); font-family: 'Orbitron'; }
+
+        .player-id { color: var(--neon-pink); font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+<div class="moon"></div>
+
+<div class="container">
+    
+    <div id="loginPage" class="page">
+        <h1>Register</h1>
+        <p>Enter your details to join WYR Olympics</p>
+        <input type="text" id="realName" placeholder="Real Name : ______">
+        <input type="text" id="nickName" placeholder="Nick Name : ______">
+        <button class="btn" onclick="registerUser()">Enter Hub</button>
+    </div>
+
+    <div id="homePage" class="page">
+        <h1>WYR OLYMPIC</h1>
+        <button class="btn" onclick="showPage('registerEventPage')">Register in Event</button>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
+            <button class="btn btn-small" onclick="showPage('infoPage')">Event Info</button>
+            <button class="btn btn-small" onclick="showPage('leaderboardPage')">Leaderboard</button>
+            <button class="btn btn-small" onclick="showPage('participantsPage')">Participants</button>
+        </div>
+
+        <div class="card">
+            <h3 style="color:var(--neon-cyan)">Organiser Info</h3>
+            <p>Ishaan & Yuvraj</p>
+            <p style="font-size: 0.8rem; margin-top:5px;">For help, contact Ishaan on WhatsApp</p>
+        </div>
+
+        <div class="card">
+            <h3 style="color:var(--neon-cyan)">Details & Rules</h3>
+            <p style="font-size: 0.9rem;">5 Days, 5 Challenges. Individual participation. Participation = +1pt, Winning = +5pts. Top 2 get to spin the reward wheel!</p>
+        </div>
+    </div>
+
+    <div id="registerEventPage" class="page">
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <h1>Register</h1>
+        <h2 id="displayId">Your ID: ---</h2>
+        
+        <div id="eventList">
+            </div>
+    </div>
+
+    <div id="participantsPage" class="page">
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <h1>Participants</h1>
+        <div id="participantContent"></div>
+    </div>
+
+    <div id="leaderboardPage" class="page">
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <h1>Leaderboard</h1>
+        <table>
+            <thead>
+                <tr><th>Rank</th><th>Name</th><th>Points</th></tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+        </table>
+    </div>
+
+    <div id="infoPage" class="page">
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <h2>Event Info</h2>
+        <p class="card">Daily mini-challenges across 5 days. Speed, Gaming, Logic. Details shared daily. No cheating!</p>
+    </div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update, push, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCz9cM7bUCAJnW2cr0qIZxaS60mWgRVAyM",
+        authDomain: "wyr-olympics.firebaseapp.com",
+        databaseURL: "https://wyr-olympics-default-rtdb.firebaseio.com",
+        projectId: "wyr-olympics",
+        storageBucket: "wyr-olympics.firebasestorage.app",
+        messagingSenderId: "5860419843",
+        appId: "1:5860419843:web:45f65b48d42c36850ae136"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Global User State
+    let currentUser = JSON.parse(localStorage.getItem('wyr_user')) || null;
+
+    window.showPage = function(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        if(pageId === 'participantsPage') loadParticipants();
+        if(pageId === 'leaderboardPage') loadLeaderboard();
+    }
+
+    // Initialize logic
+    if (currentUser) {
+        showPage('homePage');
+        updateUI();
+    } else {
+        showPage('loginPage');
+    }
+
+    window.registerUser = async function() {
+        const name = document.getElementById('realName').value;
+        const nick = document.getElementById('nickName').value;
+        if(!name || !nick) return alert("Fill all fields");
+
+        const userCountRef = ref(db, 'userCount');
+        const snapshot = await get(userCountRef);
+        let count = (snapshot.val() || 0) + 1;
+        await set(userCountRef, count);
+
+        const id = count.toString().padStart(3, '0');
+        const userData = { realName: name, nickName: nick, id: id, points: 0, events: {} };
+        
+        await set(ref(db, 'players/' + id), userData);
+        localStorage.setItem('wyr_user', JSON.stringify(userData));
+        currentUser = userData;
+        showPage('homePage');
+        updateUI();
+    }
+
+    function updateUI() {
+        if(!currentUser) return;
+        document.getElementById('displayId').innerText = "Your ID: " + currentUser.id;
+        renderEvents();
+    }
+
+    function renderEvents() {
+        const list = document.getElementById('eventList');
+        list.innerHTML = '';
+        for(let i=1; i<=5; i++) {
+            const isPart = currentUser.events && currentUser.events['e'+i];
+            list.innerHTML += `
+                <div class="event-row">
+                    <span>Event ${i}</span>
+                    <div class="status-box ${isPart ? 'participating' : ''}" onclick="toggleEvent(${i})">
+                        ${isPart ? 'Participated' : 'Wanna Participate?'}
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    window.toggleEvent = async function(eventNum) {
+        const eventKey = 'e' + eventNum;
+        const hasParticipated = currentUser.events && currentUser.events[eventKey];
+        
+        const newStatus = !hasParticipated;
+        const pointChange = newStatus ? 1 : -1;
+
+        // Update Firebase
+        const playerRef = ref(db, 'players/' + currentUser.id);
+        const updates = {};
+        updates[`events/${eventKey}`] = newStatus;
+        updates[`points`] = (currentUser.points || 0) + pointChange;
+        
+        await update(playerRef, updates);
+
+        // Update Local
+        currentUser.points = (currentUser.points || 0) + pointChange;
+        if(!currentUser.events) currentUser.events = {};
+        currentUser.events[eventKey] = newStatus;
+        localStorage.setItem('wyr_user', JSON.stringify(currentUser));
+        renderEvents();
+    }
+
+    function loadParticipants() {
+        onValue(ref(db, 'players'), (snapshot) => {
+            const players = snapshot.val();
+            let html = '';
+            for(let i=1; i<=5; i++) {
+                html += `<details class="card"><summary>Event ${i} Participants</summary><ul>`;
+                for(let p in players) {
+                    if(players[p].events && players[p].events['e'+i]) {
+                        html += `<li>${players[p].realName} <span class="player-id">#${players[p].id}</span></li>`;
+                    }
+                }
+                html += `</ul></details>`;
+            }
+            document.getElementById('participantContent').innerHTML = html;
+        });
+    }
+
+    function loadLeaderboard() {
+        onValue(ref(db, 'players'), (snapshot) => {
+            const players = snapshot.val();
+            const sorted = Object.values(players).sort((a,b) => b.points - a.points);
+            let html = '';
+            sorted.forEach((p, index) => {
+                html += `<tr><td>#${index+1}</td><td>${p.realName}</td><td style="color:var(--neon-cyan)">${p.points}</td></tr>`;
+            });
+            document.getElementById('leaderboardBody').innerHTML = html;
+        });
+    }
+</script>
+
+</body>
+</html>
