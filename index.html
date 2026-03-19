@@ -3,96 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WYR OLYMPICS | PRO HUB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <title>WYR OLYMPICS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --neon-cyan: #00f2ff; 
-            --neon-pink: #ff00e5; 
-            --glass: rgba(255, 255, 255, 0.08);
-            --border: rgba(0, 242, 255, 0.4);
-        }
-
+        :root { --cyan: #00f2ff; --pink: #ff00e5; --glass: rgba(255, 255, 255, 0.05); }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            font-family: 'Poppins', sans-serif; 
-            background: #020205; 
-            color: white; 
-            overflow-x: hidden; 
-            min-height: 100vh;
-            padding-top: 80px; 
-            padding-bottom: 80px; 
-            background-image: radial-gradient(circle at 50% 50%, #0a0a0f 0%, #000 100%);
+            font-family: 'Poppins', sans-serif; background: #050508; color: white; 
+            padding: 80px 0; min-height: 100vh;
+            background-image: radial-gradient(circle at top right, #111, #000);
         }
 
-        /* --- BARS --- */
+        /* --- CLEAN BARS --- */
         .top-bar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
-            border-bottom: 3px solid var(--neon-cyan);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1000; box-shadow: 0 0 20px var(--neon-cyan);
+            position: fixed; top: 0; width: 100%; height: 60px;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,242,255,0.3);
+            display: flex; align-items: center; justify-content: center; z-index: 1000;
         }
         .bottom-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
-            border-top: 3px solid var(--neon-pink);
-            display: flex; align-items: center; justify-content: space-around;
-            z-index: 1000; box-shadow: 0 0 20px var(--neon-pink);
+            position: fixed; bottom: 0; width: 100%; height: 60px;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,0,229,0.3);
+            display: flex; align-items: center; justify-content: space-around; z-index: 1000;
         }
 
-        .container { width: 92%; max-width: 500px; margin: 0 auto; position: relative; z-index: 1; }
-        .page { display: none; animation: slideIn 0.4s ease-out; }
+        .container { width: 90%; max-width: 450px; margin: 0 auto; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
         .active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 2.5rem; text-align: center; margin-bottom: 25px; color: #fff; text-shadow: 0 0 20px var(--neon-cyan); }
+        h1 { font-family: 'Orbitron'; font-size: 1.8rem; text-align: center; margin-bottom: 20px; color: var(--cyan); text-shadow: 0 0 15px rgba(0,242,255,0.4); }
 
-        .card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .card { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; backdrop-filter: blur(5px); }
 
-        /* --- BIG BOLD BUTTONS --- */
+        /* --- BUTTONS --- */
         .btn { 
-            display: block; width: 100%; padding: 20px; margin: 15px 0; 
-            background: linear-gradient(45deg, var(--neon-cyan), #0088ff); 
-            border: none; border-radius: 15px; color: #000; 
-            font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; cursor: pointer;
-            box-shadow: 0 0 20px var(--neon-cyan); transition: 0.3s;
+            display: block; width: 100%; padding: 15px; margin: 10px 0; 
+            background: var(--cyan); border: none; border-radius: 10px; 
+            color: #000; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s;
         }
-        .btn-nav { 
-            background: transparent; border: 3px solid var(--neon-pink); 
-            color: var(--neon-pink); font-size: 0.9rem; padding: 15px;
-            text-shadow: 0 0 10px var(--neon-pink); box-shadow: 0 0 15px rgba(255, 0, 229, 0.3);
-            font-weight: 900;
-        }
+        .btn-nav { background: transparent; border: 1px solid var(--pink); color: var(--pink); font-size: 0.75rem; padding: 10px; }
+        .btn:hover { box-shadow: 0 0 20px var(--cyan); transform: translateY(-2px); }
 
-        /* --- UPDATES / FEED --- */
-        .feed-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--neon-cyan); position: relative;}
-        .feed-time { font-size: 0.65rem; color: #888; display: block; margin-top: 5px; }
-        .feed-owner { color: var(--neon-cyan); font-weight: bold; font-size: 0.8rem; }
-        .del-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ff4444; cursor: pointer; font-size: 0.7rem; }
+        /* --- UPDATES --- */
+        .update-item { border-left: 3px solid var(--cyan); padding-left: 10px; margin-bottom: 15px; font-size: 0.9rem; }
+        .update-time { font-size: 0.6rem; color: #666; display: block; }
+        #adminPanel { display: none; margin-top: 20px; border-top: 1px dashed var(--pink); padding-top: 15px; }
 
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 10px; background: rgba(0,0,0,0.5); border: 1px solid #333; border-radius: 12px; color: white; font-family: 'Poppins'; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; border-radius: 8px; color: white; }
 
-        /* Leaderboard Table */
-        table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-        tr { background: rgba(255,255,255,0.05); }
-        td { padding: 20px 10px; }
-        td:first-child { color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; border-radius: 15px 0 0 15px; }
-        td:last-child { color: var(--neon-pink); text-align: right; font-weight: 900; border-radius: 0 15px 15px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 15px 5px; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        .nick { font-weight: 600; color: var(--pink); }
     </style>
 </head>
 <body>
 
-    <div class="top-bar"><div style="font-family:'Orbitron'; font-weight:900; color:var(--neon-cyan); letter-spacing:5px;">WYR OLYMPICS</div></div>
+    <div class="top-bar"><div style="font-family:'Orbitron'; color:var(--cyan); letter-spacing:3px;">WYR OLYMPICS</div></div>
 
     <div class="container">
         <div id="loginPage" class="page">
             <h1>IDENTITY</h1>
             <div class="card">
-                <input type="text" id="realName" placeholder="REAL NAME">
-                <input type="text" id="nickName" placeholder="NICKNAME">
-                <button class="btn" onclick="registerUser()">START CAREER</button>
+                <input type="text" id="realName" placeholder="Real Name">
+                <input type="text" id="nickName" placeholder="Nickname">
+                <button class="btn" onclick="registerUser()">ENTER HUB</button>
             </div>
         </div>
 
@@ -105,57 +82,54 @@
                 <button class="btn btn-nav" onclick="showPage('participantsPage')">LIST</button>
             </div>
             <div class="card" style="margin-top:20px; text-align:center;">
-                <h3 style="color:var(--neon-cyan); font-family:'Orbitron'; font-size:0.8rem; margin-bottom:10px;">ORGANISERS</h3>
-                <p style="font-weight:900; font-size:1.3rem;">Ishaan & Yuvraj</p>
+                <p style="font-size: 0.7rem; color: #888; letter-spacing: 2px;">ORGANISERS</p>
+                <p style="font-weight:600;">Ishaan & Yuvraj</p>
             </div>
         </div>
 
         <div id="infoPage" class="page">
-            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
-            <h1>INFO & UPDATES</h1>
-            
+            <p onclick="showPage('homePage')" style="color:#666; cursor:pointer; margin-bottom:10px;">← BACK</p>
+            <h1>INFO</h1>
             <div class="card">
-                <h3 style="color:var(--neon-pink); font-family:'Orbitron'; margin-bottom:10px;">LIVE FEED</h3>
+                <h4 style="color:var(--pink); margin-bottom:10px; font-family:'Orbitron'; font-size:0.8rem;">LIVE UPDATES</h4>
                 <div id="liveUpdates"></div>
+                
+                <div id="adminPanel">
+                    <p style="color:var(--pink); font-size:0.6rem; margin-bottom:5px;">SAGEGOD ADMIN ACCESS</p>
+                    <textarea id="adminMsg" placeholder="New update..."></textarea>
+                    <button class="btn" style="padding:8px; font-size:0.7rem;" onclick="postUpdate()">POST</button>
+                </div>
             </div>
-
-            <div class="card">
-                <h3 style="color:var(--neon-cyan); font-family:'Orbitron'; margin-bottom:10px;">PROTOCOL</h3>
+            <div class="card" style="font-size:0.85rem; line-height:1.6;">
                 <p>• Participation: +1 Point<br>• Winning: +5 Points<br>• Fair Play only.</p>
-            </div>
-
-            <div class="card" style="border-color:var(--neon-pink); background:rgba(255,0,229,0.05);">
-                <p style="font-size:0.7rem; color:var(--neon-pink); margin-bottom:5px;">ADMIN PANEL (ISHAN/YUVRAJ ONLY)</p>
-                <textarea id="adminMsg" placeholder="Write update..."></textarea>
-                <button class="btn" style="padding:10px; font-size:0.8rem;" onclick="postUpdate()">POST UPDATE</button>
             </div>
         </div>
 
         <div id="leaderboardPage" class="page">
-            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <p onclick="showPage('homePage')" style="color:#666; cursor:pointer; margin-bottom:10px;">← BACK</p>
             <h1>RANKINGS</h1>
-            <table><tbody id="leaderboardBody"></tbody></table>
+            <div class="card"><table><tbody id="leaderboardBody"></tbody></table></div>
         </div>
 
         <div id="participantsPage" class="page">
-            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <p onclick="showPage('homePage')" style="color:#666; cursor:pointer; margin-bottom:10px;">← BACK</p>
             <h1>PLAYER LIST</h1>
             <div id="participantContent"></div>
         </div>
 
         <div id="registerEventPage" class="page">
-            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
-            <h1 id="displayId">ID: #---</h1>
+            <p onclick="showPage('homePage')" style="color:#666; cursor:pointer; margin-bottom:10px;">← BACK</p>
+            <h1 id="displayId">ID: ---</h1>
             <div class="card" id="eventList"></div>
         </div>
     </div>
 
     <div class="bottom-bar">
-        <div style="display:flex; align-items:center; gap:10px;">
-            <div style="width:10px; height:10px; background:#0f0; border-radius:50%; box-shadow:0 0 10px #0f0;"></div>
-            <span id="footerUser" style="font-family:'Orbitron'; font-weight:900; font-size:0.8rem;">OFFLINE</span>
+        <div style="display:flex; align-items:center; gap:8px; font-family:'Orbitron'; font-size:0.7rem;">
+            <div style="width:6px; height:6px; background:#0f0; border-radius:50%;"></div>
+            <span id="footerUser">OFFLINE</span>
         </div>
-        <div id="footerID" style="color:var(--neon-pink); font-family:'Orbitron'; font-weight:900;">#000</div>
+        <div id="footerID" style="color:var(--pink); font-family:'Orbitron'; font-size:0.7rem; font-weight:bold;">#000</div>
     </div>
 
 <script type="module">
@@ -182,7 +156,13 @@
         document.getElementById(id).classList.add('active');
         if(id === 'participantsPage') loadParticipants();
         if(id === 'leaderboardPage') loadLeaderboard();
-        if(id === 'infoPage') loadUpdates();
+        if(id === 'infoPage') {
+            loadUpdates();
+            // SHOW ADMIN PANEL ONLY FOR SAGEGOD
+            if(currentUser && currentUser.nickName === "Sagegod") {
+                document.getElementById('adminPanel').style.display = 'block';
+            }
+        }
     };
 
     if (currentUser) { showPage('homePage'); updateUI(); } else { showPage('loginPage'); }
@@ -190,7 +170,7 @@
     window.registerUser = async () => {
         const rName = document.getElementById('realName').value.trim();
         const nName = document.getElementById('nickName').value.trim();
-        if(!rName || !nName) return alert("Enter names!");
+        if(!rName || !nName) return alert("Fill fields!");
         const snap = await getDocs(collection(db, "players"));
         const id = (snap.size + 1).toString().padStart(3, '0'); 
         const user = { realName: rName, nickName: nName, id: id, points: 0, events: {e0:false, e1:false, e2:false, e3:false, e4:false} };
@@ -213,9 +193,9 @@
         if(!list) return; list.innerHTML = '';
         EVENT_NAMES.forEach((name, i) => {
             const isPart = currentUser.events['e'+i];
-            list.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #333;">
-                <span style="font-weight:900;">${name}</span>
-                <div onclick="toggleEvent(${i})" style="padding:10px 15px; border-radius:10px; font-weight:900; background:${isPart ? 'var(--neon-cyan)':'none'}; color:${isPart ? '#000':'#fff'}; border:2px solid ${isPart ? 'var(--neon-cyan)':'#444'}">
+            list.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #222;">
+                <span style="font-size:0.9rem;">${name}</span>
+                <div onclick="toggleEvent(${i})" style="padding:6px 12px; border-radius:8px; font-size:0.7rem; font-weight:bold; background:${isPart ? 'var(--cyan)':'#111'}; color:${isPart ? '#000':'#fff'}; border:1px solid ${isPart ? 'var(--cyan)':'#333'}">
                     ${isPart ? 'JOINED' : 'JOIN'}
                 </div>
             </div>`;
@@ -235,11 +215,11 @@
             const div = document.getElementById('liveUpdates'); div.innerHTML = '';
             snap.forEach(d => {
                 const data = d.data();
-                div.innerHTML += `<div class="feed-box">
-                    <span class="feed-owner">OWNER: Ishaan & Yuvraj</span>
-                    <p style="margin-top:5px;">${data.msg}</p>
-                    <span class="feed-time">${data.time ? data.time.toDate().toLocaleString() : 'Just now'}</span>
-                    <button class="del-btn" onclick="deletePost('${d.id}')">X</button>
+                const isOwner = currentUser && currentUser.nickName === "Sagegod";
+                div.innerHTML += `<div class="update-item">
+                    <p>${data.msg}</p>
+                    <span class="update-time">${data.time ? data.time.toDate().toLocaleString() : 'Just now'}</span>
+                    ${isOwner ? `<button onclick="deletePost('${d.id}')" style="background:none; border:none; color:red; font-size:0.6rem; cursor:pointer;">[Delete]</button>` : ''}
                 </div>`;
             });
         });
@@ -252,16 +232,15 @@
         document.getElementById('adminMsg').value = '';
     };
 
-    window.deletePost = async (id) => { if(confirm("Delete this post?")) await deleteDoc(doc(db, "updates", id)); };
+    window.deletePost = async (id) => { if(confirm("Delete?")) await deleteDoc(doc(db, "updates", id)); };
 
     function loadParticipants() {
         onSnapshot(collection(db, "players"), (snap) => {
             let html = ''; const players = snap.docs.map(d => d.data());
             EVENT_NAMES.forEach((name, i) => {
                 const joined = players.filter(p => p.events['e'+i]);
-                html += `<div class="card"><h4 style="color:var(--neon-cyan); margin-bottom:10px;">${name}</h4>
-                    ${joined.length > 0 ? joined.map(p => `<div style="margin-bottom:5px;">${p.nickName} <small style="color:#666">#${p.id}</small></div>`).join('') : 'None'}
-                </div>`;
+                html += `<div class="card" style="padding:15px;"><p style="color:var(--cyan); font-weight:bold; font-size:0.8rem; margin-bottom:5px;">${name}</p>
+                    <div style="font-size:0.8rem;">${joined.length > 0 ? joined.map(p => `${p.nickName}`).join(', ') : 'None'}</div></div>`;
             });
             document.getElementById('participantContent').innerHTML = html;
         });
@@ -272,7 +251,7 @@
         onSnapshot(q, (snap) => {
             let html = ''; snap.forEach((doc, idx) => {
                 const p = doc.data();
-                html += `<tr><td>#${idx+1}</td><td>${p.nickName}<br><small style="color:#555">ID:${p.id}</small></td><td>${p.points} PTS</td></tr>`;
+                html += `<tr><td>#${idx+1}</td><td class="nick">${p.nickName}</td><td style="text-align:right;">${p.points} PTS</td></tr>`;
             });
             document.getElementById('leaderboardBody').innerHTML = html;
         });
