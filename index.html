@@ -3,39 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WYR Olympics Hub</title>
+    <title>WYR Olympics | Space Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-cyan: #00f2ff; --neon-pink: #ff00e5; --moon: #fff; --bg: #050505; }
+        :root { --neon-cyan: #00f2ff; --neon-pink: #ff00e5; --moon: #fff; --bg: #020205; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: white; overflow-x: hidden; min-height: 100vh; }
         
-        /* Neon Moon */
-        .moon { position: fixed; top: 30px; right: 30px; width: 60px; height: 60px; background: var(--moon); border-radius: 50%; box-shadow: 0 0 30px var(--neon-cyan); z-index: -1; animation: float 4s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg); 
+            color: white; 
+            overflow-x: hidden; 
+            min-height: 100vh;
+            /* Animated Stars Background */
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            animation: moveStars 60s linear infinite;
+        }
 
-        .container { max-width: 500px; margin: 0 auto; padding: 25px; text-align: center; }
-        .page { display: none; animation: fadeIn 0.4s ease; }
+        @keyframes moveStars {
+            from { background-position: 0 0, 0 0, 0 0; }
+            to { background-position: 1000px 500px, 400px 400px, 300px 300px; }
+        }
+
+        /* Neon Moon with Glow */
+        .moon { 
+            position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; 
+            background: var(--moon); border-radius: 50%; 
+            box-shadow: 0 0 20px #fff, 0 0 60px var(--neon-cyan); 
+            z-index: -1; 
+        }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 25px; position: relative; z-index: 1; }
+        .page { display: none; animation: slideUp 0.5s ease-out; }
         .active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); margin-bottom: 20px; font-size: 2rem; }
-        .card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(0,242,255,0.2); margin-top: 15px; text-align: left; }
+        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan); margin-bottom: 25px; letter-spacing: 2px; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #333; color: white; border-radius: 8px; font-family: 'Poppins'; }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid var(--neon-cyan); background: transparent; color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s; text-decoration: none; }
-        .btn:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); }
-        .btn-s { padding: 8px; font-size: 0.7rem; border-color: var(--neon-pink); color: var(--neon-pink); margin: 2px; }
+        /* Modern Cards */
+        .card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(10px);
+            padding: 20px; border-radius: 15px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            margin-top: 20px; text-align: left; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        .event-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
-        .status-box { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; border: 1px solid #444; min-width: 120px; text-align: center; }
-        .participating { background: var(--neon-cyan); color: black; border-color: var(--neon-cyan); font-weight: bold; }
+        .btn { 
+            display: block; width: 100%; padding: 16px; margin: 12px 0; 
+            border: 2px solid var(--neon-cyan); background: transparent; 
+            color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: bold; 
+            cursor: pointer; border-radius: 12px; transition: 0.4s; 
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 30px var(--neon-cyan); transform: translateY(-3px); }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #222; }
+        .btn-s { padding: 10px; font-size: 0.75rem; border-color: var(--neon-pink); color: var(--neon-pink); margin: 5px; flex: 1; }
+        .btn-s:hover { background: var(--neon-pink); color: #fff; box-shadow: 0 0 20px var(--neon-pink); }
+
+        input { width: 100%; padding: 14px; margin: 10px 0; background: rgba(0,0,0,0.5); border: 1px solid #333; color: white; border-radius: 10px; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
+
+        .event-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .status-box { padding: 8px 16px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; border: 1px solid #555; transition: 0.3s; }
+        .participating { background: var(--neon-cyan); color: #000; border-color: var(--neon-cyan); font-weight: bold; box-shadow: 0 0 15px var(--neon-cyan); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
         th { color: var(--neon-cyan); font-family: 'Orbitron'; font-size: 0.8rem; }
-        .nick-tag { color: var(--neon-pink); font-weight: 600; }
-        .id-badge { font-size: 0.7rem; background: #222; padding: 2px 6px; border-radius: 4px; margin-left: 5px; color: #aaa; }
+        .nick-tag { color: var(--neon-pink); font-weight: 600; text-shadow: 0 0 5px rgba(255, 0, 229, 0.3); }
+        
+        .back-link { color: #888; text-decoration: none; font-size: 0.9rem; cursor: pointer; display: inline-block; margin-bottom: 15px; }
+        .back-link:hover { color: #fff; }
     </style>
 </head>
 <body>
@@ -44,62 +88,73 @@
 
 <div class="container">
     <div id="loginPage" class="page">
-        <h1>Register</h1>
-        <input type="text" id="realName" placeholder="Real Name">
-        <input type="text" id="nickName" placeholder="Nick Name">
-        <button class="btn" onclick="registerUser()">Start Journey</button>
+        <h1>ACCESS GRANTED</h1>
+        <p style="color:#888; margin-bottom: 20px;">Initialize your Olympic Profile</p>
+        <input type="text" id="realName" placeholder="Enter Real Name...">
+        <input type="text" id="nickName" placeholder="Choose Nickname...">
+        <button class="btn" onclick="registerUser()">Launch Hub</button>
     </div>
 
     <div id="homePage" class="page">
         <h1>WYR OLYMPIC</h1>
         <button class="btn" onclick="showPage('registerEventPage')">Register in Event</button>
-        <div style="display: flex; justify-content: space-between;">
-            <button class="btn btn-s" onclick="showPage('infoPage')">Info</button>
+        <div style="display: flex;">
+            <button class="btn btn-s" onclick="showPage('infoPage')">Rules</button>
             <button class="btn btn-s" onclick="showPage('leaderboardPage')">Leaderboard</button>
-            <button class="btn btn-s" onclick="showPage('participantsPage')">Participants</button>
+            <button class="btn btn-s" onclick="showPage('participantsPage')">Players</button>
         </div>
         <div class="card">
-            <p><strong>Organiser:</strong> Ishaan & Yuvraj</p>
-            <p style="font-size: 0.8rem; color: #aaa;">WhatsApp Ishaan for support.</p>
+            <h3 style="color:var(--neon-cyan); margin-bottom: 10px;">COMMAND CENTER</h3>
+            <p><strong>Organisers:</strong> Ishaan & Yuvraj</p>
+            <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">For instant support, contact Ishaan on WhatsApp.</p>
         </div>
     </div>
 
     <div id="registerEventPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; margin-bottom:10px;">← Back</button>
-        <h2 id="displayId" style="color:var(--neon-pink); font-family:'Orbitron';">ID: ---</h2>
+        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
+        <h2 id="displayId" style="color:var(--neon-pink); font-family:'Orbitron'; margin-bottom: 20px;">ID: ---</h2>
         <div id="eventList"></div>
     </div>
 
     <div id="participantsPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
-        <h1>Participants</h1>
+        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
+        <h1>PARTICIPANTS</h1>
         <div id="participantContent"></div>
     </div>
 
     <div id="leaderboardPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
-        <h1>Leaderboard</h1>
-        <table>
-            <thead><tr><th>Rank</th><th>Player</th><th>Pts</th></tr></thead>
-            <tbody id="leaderboardBody"></tbody>
-        </table>
+        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
+        <h1>LEADERBOARD</h1>
+        <div class="card" style="padding: 0;">
+            <table>
+                <thead><tr><th>RANK</th><th>PLAYER</th><th>POINTS</th></tr></thead>
+                <tbody id="leaderboardBody"></tbody>
+            </table>
+        </div>
     </div>
 
     <div id="infoPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
-        <h1>Rules</h1>
-        <div class="card" style="font-size: 0.8rem; line-height: 1.6;">
-            WYR OLYMPICS – 5 Days, 5 Challenges.<br><br>
-            • Participation: +1 Point<br>
-            • Winning: +5 Points<br>
-            • Fair play only. Top 2 get the Reward Wheel!
+        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
+        <h1>RULES & INFO</h1>
+        <div class="card">
+            <h3 style="color:var(--neon-pink)">WYR OLYMPICS DETAILS</h3>
+            <p style="font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
+                Welcome to the 5-day challenge! Here is what you need to know:<br><br>
+                <strong>1. Points System:</strong> Joining an event gives you +1 point. Winning the event gives you an extra +5 points.<br>
+                <strong>2. Fair Play:</strong> Cheating or duplicate accounts will result in immediate disqualification.<br>
+                <strong>3. Rewards:</strong> At the end of 5 days, the top 2 players will spin the <strong>Golden Wheel</strong> for cash prizes.<br><br>
+                <em>Personal Info:</em> This event is hosted by Ishaan and Yuvraj for our community.
+            </p>
         </div>
     </div>
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // --- CHANGE YOUR EVENT NAMES HERE ---
+    const EVENT_NAMES = ["Gaming Clash", "Speed Logic", "Mystery Task", "Skill Shot", "Final Showdown"];
 
     const firebaseConfig = {
         apiKey: "AIzaSyCz9cM7bUCAJnW2cr0qIZxaS60mWgRVAyM",
@@ -125,16 +180,14 @@
     if (currentUser) { showPage('homePage'); updateUI(); } else { showPage('loginPage'); }
 
     window.registerUser = async () => {
-        const rName = document.getElementById('realName').value;
-        const nName = document.getElementById('nickName').value;
+        const rName = document.getElementById('realName').value.trim();
+        const nName = document.getElementById('nickName').value.trim();
         if(!rName || !nName) return alert("Fill both fields!");
 
-        // Sequential ID Logic (001, 002...)
         const querySnapshot = await getDocs(collection(db, "players"));
-        const count = querySnapshot.size + 1;
-        const id = count.toString().padStart(3, '0'); 
+        const id = (querySnapshot.size + 1).toString().padStart(3, '0'); 
 
-        const userData = { realName: rName, nickName: nName, id: id, points: 0, events: {e1:false, e2:false, e3:false, e4:false, e5:false} };
+        const userData = { realName: rName, nickName: nName, id: id, points: 0, events: {e0:false, e1:false, e2:false, e3:false, e4:false} };
         
         await setDoc(doc(db, "players", id), userData);
         localStorage.setItem('wyr_user', JSON.stringify(userData));
@@ -152,16 +205,16 @@
     function renderEvents() {
         const list = document.getElementById('eventList');
         list.innerHTML = '';
-        for(let i=1; i<=5; i++) {
+        EVENT_NAMES.forEach((name, i) => {
             const isPart = currentUser.events['e'+i];
             list.innerHTML += `
                 <div class="event-row">
-                    <span>Event ${i}</span>
+                    <span style="font-weight:600">${name}</span>
                     <div class="status-box ${isPart ? 'participating' : ''}" onclick="toggleEvent(${i})">
-                        ${isPart ? 'Joined ✓' : 'Participate?'}
+                        ${isPart ? 'JOINED ✓' : 'PARTICIPATE?'}
                     </div>
                 </div>`;
-        }
+        });
     }
 
     window.toggleEvent = async (num) => {
@@ -182,15 +235,15 @@
         onSnapshot(collection(db, "players"), (snap) => {
             let html = '';
             const players = snap.docs.map(d => d.data());
-            for(let i=1; i<=5; i++) {
+            EVENT_NAMES.forEach((name, i) => {
                 const joined = players.filter(p => p.events['e'+i]);
                 html += `
-                <details class="card" open><summary style="color:var(--neon-cyan); cursor:pointer; font-weight:bold;">Event ${i}</summary>
-                    <div style="margin-top:10px;">
-                    ${joined.length > 0 ? joined.map(p => `<div><span class="nick-tag">${p.nickName}</span> <span class="id-badge">${p.id}</span></div>`).join('') : 'No participants yet'}
+                <details class="card" open style="cursor:pointer;"><summary style="color:var(--neon-cyan); font-weight:bold; font-family:'Orbitron'; font-size:0.9rem;">${name}</summary>
+                    <div style="margin-top:12px; padding-left: 10px; border-left: 2px solid var(--neon-pink);">
+                    ${joined.length > 0 ? joined.map(p => `<div style="margin-bottom:5px;"><span class="nick-tag">${p.nickName}</span> <span style="font-size:0.7rem; color:#666;">#${p.id}</span></div>`).join('') : '<span style="color:#555">Waiting for heroes...</span>'}
                     </div>
                 </details>`;
-            }
+            });
             document.getElementById('participantContent').innerHTML = html;
         });
     }
@@ -201,7 +254,11 @@
             let html = '';
             snap.docs.forEach((doc, idx) => {
                 const p = doc.data();
-                html += `<tr><td>#${idx+1}</td><td><span class="nick-tag">${p.nickName}</span><br><small>${p.id}</small></td><td style="color:var(--neon-cyan); font-weight:bold;">${p.points}</td></tr>`;
+                html += `<tr>
+                    <td style="font-weight:bold; color:${idx < 3 ? 'var(--neon-cyan)' : '#888'}">#${idx+1}</td>
+                    <td><span class="nick-tag">${p.nickName}</span><br><small style="color:#555">ID: ${p.id}</small></td>
+                    <td style="color:var(--neon-cyan); font-weight:bold;">${p.points}</td>
+                </tr>`;
             });
             document.getElementById('leaderboardBody').innerHTML = html;
         });
