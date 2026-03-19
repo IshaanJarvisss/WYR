@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WYR OLYMPICS | ELITE HUB</title>
+    <title>WYR OLYMPICS | PRO HUB</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -21,85 +21,74 @@
             color: white; 
             overflow-x: hidden; 
             min-height: 100vh;
-            padding-top: 70px; /* Space for Top Bar */
-            padding-bottom: 70px; /* Space for Bottom Bar */
-            background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            padding-top: 80px; 
+            padding-bottom: 80px; 
+            background-image: radial-gradient(circle at 50% 50%, #0a0a0f 0%, #000 100%);
         }
 
-        /* --- FIXED TOP BAR --- */
+        /* --- BARS --- */
         .top-bar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
-            border-bottom: 2px solid var(--neon-cyan);
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 3px solid var(--neon-cyan);
             display: flex; align-items: center; justify-content: center;
-            z-index: 1000; box-shadow: 0 5px 20px rgba(0, 242, 255, 0.2);
+            z-index: 1000; box-shadow: 0 0 20px var(--neon-cyan);
         }
-        .logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 3px; }
-
-        /* --- FIXED BOTTOM BAR --- */
         .bottom-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 60px;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px);
-            border-top: 2px solid var(--neon-pink);
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
+            border-top: 3px solid var(--neon-pink);
             display: flex; align-items: center; justify-content: space-around;
-            z-index: 1000; box-shadow: 0 -5px 20px rgba(255, 0, 229, 0.2);
+            z-index: 1000; box-shadow: 0 0 20px var(--neon-pink);
         }
-        .user-status { font-family: 'Orbitron'; font-size: 0.75rem; color: #fff; display: flex; align-items: center; gap: 10px; }
-        .status-dot { width: 8px; height: 8px; background: #0f0; border-radius: 50%; box-shadow: 0 0 10px #0f0; animation: blink 1.5s infinite; }
-        @keyframes blink { 50% { opacity: 0.3; } }
 
-        /* Massive Glowing Moon background */
-        .moon { position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: #fff; border-radius: 50%; box-shadow: 0 0 100px var(--neon-cyan); z-index: -1; opacity: 0.1; }
-
-        .container { width: 95%; max-width: 500px; margin: 0 auto; position: relative; z-index: 1; }
-
+        .container { width: 92%; max-width: 500px; margin: 0 auto; position: relative; z-index: 1; }
         .page { display: none; animation: slideIn 0.4s ease-out; }
         .active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2.2rem; text-align: center; margin-bottom: 20px; text-transform: uppercase; color: #fff; text-shadow: 0 0 15px var(--neon-cyan); }
+        h1 { font-family: 'Orbitron'; font-weight: 900; font-size: 2.5rem; text-align: center; margin-bottom: 25px; color: #fff; text-shadow: 0 0 20px var(--neon-cyan); }
 
-        .card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
 
-        /* BUTTONS */
+        /* --- BIG BOLD BUTTONS --- */
         .btn { 
-            display: block; width: 100%; padding: 18px; margin: 12px 0; 
+            display: block; width: 100%; padding: 20px; margin: 15px 0; 
             background: linear-gradient(45deg, var(--neon-cyan), #0088ff); 
             border: none; border-radius: 15px; color: #000; 
-            font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; cursor: pointer;
-            box-shadow: 0 0 15px var(--neon-cyan); transition: 0.3s;
+            font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; cursor: pointer;
+            box-shadow: 0 0 20px var(--neon-cyan); transition: 0.3s;
         }
-        .btn:active { transform: scale(0.95); }
+        .btn-nav { 
+            background: transparent; border: 3px solid var(--neon-pink); 
+            color: var(--neon-pink); font-size: 0.9rem; padding: 15px;
+            text-shadow: 0 0 10px var(--neon-pink); box-shadow: 0 0 15px rgba(255, 0, 229, 0.3);
+            font-weight: 900;
+        }
 
-        .nav-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-        .btn-nav { background: transparent; border: 1px solid var(--neon-pink); color: var(--neon-pink); font-size: 0.7rem; padding: 10px; }
+        /* --- UPDATES / FEED --- */
+        .feed-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--neon-cyan); position: relative;}
+        .feed-time { font-size: 0.65rem; color: #888; display: block; margin-top: 5px; }
+        .feed-owner { color: var(--neon-cyan); font-weight: bold; font-size: 0.8rem; }
+        .del-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ff4444; cursor: pointer; font-size: 0.7rem; }
 
-        input { width: 100%; padding: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: white; font-family: 'Poppins'; outline: none; }
-
-        .event-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .event-name { font-weight: 700; font-size: 0.95rem; }
-        .status-box { padding: 8px 15px; border-radius: 10px; font-weight: 900; font-size: 0.75rem; border: 2px solid #333; cursor: pointer; min-width: 90px; text-align: center; }
-        .participating { background: var(--neon-cyan); color: #000; border-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 10px; background: rgba(0,0,0,0.5); border: 1px solid #333; border-radius: 12px; color: white; font-family: 'Poppins'; }
 
         /* Leaderboard Table */
-        table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
-        tr { background: rgba(255,255,255,0.03); border-radius: 10px; }
-        td { padding: 15px 10px; font-weight: 600; font-size: 0.9rem; }
-        td:first-child { color: var(--neon-cyan); font-family: 'Orbitron'; border-radius: 10px 0 0 10px; }
-        td:last-child { color: var(--neon-pink); text-align: right; border-radius: 0 10px 10px 0; }
+        table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+        tr { background: rgba(255,255,255,0.05); }
+        td { padding: 20px 10px; }
+        td:first-child { color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; border-radius: 15px 0 0 15px; }
+        td:last-child { color: var(--neon-pink); text-align: right; font-weight: 900; border-radius: 0 15px 15px 0; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="logo">WYR OLYMPICS</div>
-    </div>
-
-    <div class="moon"></div>
+    <div class="top-bar"><div style="font-family:'Orbitron'; font-weight:900; color:var(--neon-cyan); letter-spacing:5px;">WYR OLYMPICS</div></div>
 
     <div class="container">
         <div id="loginPage" class="page">
-            <h1>WELCOME</h1>
+            <h1>IDENTITY</h1>
             <div class="card">
                 <input type="text" id="realName" placeholder="REAL NAME">
                 <input type="text" id="nickName" placeholder="NICKNAME">
@@ -110,61 +99,68 @@
         <div id="homePage" class="page">
             <h1>COMMAND HUB</h1>
             <button class="btn" onclick="showPage('registerEventPage')">REGISTER FOR EVENTS</button>
-            <div class="nav-grid">
-                <button class="btn btn-nav" onclick="showPage('infoPage')">RULES</button>
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;">
+                <button class="btn btn-nav" onclick="showPage('infoPage')">INFO</button>
                 <button class="btn btn-nav" onclick="showPage('leaderboardPage')">RANK</button>
                 <button class="btn btn-nav" onclick="showPage('participantsPage')">LIST</button>
             </div>
-            <div class="card" style="margin-top:20px;">
-                <p style="color:var(--neon-cyan); font-weight:800;">COMMANDERS:</p>
-                <p>Ishaan & Yuvraj</p>
+            <div class="card" style="margin-top:20px; text-align:center;">
+                <h3 style="color:var(--neon-cyan); font-family:'Orbitron'; font-size:0.8rem; margin-bottom:10px;">ORGANISERS</h3>
+                <p style="font-weight:900; font-size:1.3rem;">Ishaan & Yuvraj</p>
             </div>
-        </div>
-
-        <div id="registerEventPage" class="page">
-            <h1>EVENTS</h1>
-            <div class="card">
-                <div id="eventList"></div>
-            </div>
-            <button class="btn btn-nav" onclick="showPage('homePage')">BACK TO HUB</button>
-        </div>
-
-        <div id="participantsPage" class="page">
-            <h1>PLAYER LIST</h1>
-            <div id="participantContent"></div>
-            <button class="btn btn-nav" onclick="showPage('homePage')">BACK TO HUB</button>
-        </div>
-
-        <div id="leaderboardPage" class="page">
-            <h1>RANKINGS</h1>
-            <table>
-                <tbody id="leaderboardBody"></tbody>
-            </table>
-            <button class="btn btn-nav" onclick="showPage('homePage')">BACK TO HUB</button>
         </div>
 
         <div id="infoPage" class="page">
-            <h1>PROTOCOL</h1>
+            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <h1>INFO & UPDATES</h1>
+            
             <div class="card">
-                <p><strong>P01:</strong> Join = +1pt | Win = +5pts</p>
-                <p><strong>P02:</strong> Fair Play is mandatory.</p>
-                <p><strong>P03:</strong> Winners get the Cash Wheel.</p>
+                <h3 style="color:var(--neon-pink); font-family:'Orbitron'; margin-bottom:10px;">LIVE FEED</h3>
+                <div id="liveUpdates"></div>
             </div>
-            <button class="btn btn-nav" onclick="showPage('homePage')">BACK TO HUB</button>
+
+            <div class="card">
+                <h3 style="color:var(--neon-cyan); font-family:'Orbitron'; margin-bottom:10px;">PROTOCOL</h3>
+                <p>• Participation: +1 Point<br>• Winning: +5 Points<br>• Fair Play only.</p>
+            </div>
+
+            <div class="card" style="border-color:var(--neon-pink); background:rgba(255,0,229,0.05);">
+                <p style="font-size:0.7rem; color:var(--neon-pink); margin-bottom:5px;">ADMIN PANEL (ISHAN/YUVRAJ ONLY)</p>
+                <textarea id="adminMsg" placeholder="Write update..."></textarea>
+                <button class="btn" style="padding:10px; font-size:0.8rem;" onclick="postUpdate()">POST UPDATE</button>
+            </div>
+        </div>
+
+        <div id="leaderboardPage" class="page">
+            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <h1>RANKINGS</h1>
+            <table><tbody id="leaderboardBody"></tbody></table>
+        </div>
+
+        <div id="participantsPage" class="page">
+            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <h1>PLAYER LIST</h1>
+            <div id="participantContent"></div>
+        </div>
+
+        <div id="registerEventPage" class="page">
+            <button class="btn btn-nav" style="width:100px; padding:5px; margin-bottom:10px;" onclick="showPage('homePage')">BACK</button>
+            <h1 id="displayId">ID: #---</h1>
+            <div class="card" id="eventList"></div>
         </div>
     </div>
 
     <div class="bottom-bar">
-        <div class="user-status">
-            <div class="status-dot"></div>
-            <span id="footerUser">Awaiting User...</span>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:10px; height:10px; background:#0f0; border-radius:50%; box-shadow:0 0 10px #0f0;"></div>
+            <span id="footerUser" style="font-family:'Orbitron'; font-weight:900; font-size:0.8rem;">OFFLINE</span>
         </div>
-        <div id="footerID" style="color:var(--neon-pink); font-family:'Orbitron'; font-size:0.7rem;">#000</div>
+        <div id="footerID" style="color:var(--neon-pink); font-family:'Orbitron'; font-weight:900;">#000</div>
     </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs, addDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const EVENT_NAMES = ["Gaming Clash", "Speed Logic", "Mystery Task", "Skill Shot", "Final Showdown"];
     const firebaseConfig = {
@@ -186,7 +182,7 @@
         document.getElementById(id).classList.add('active');
         if(id === 'participantsPage') loadParticipants();
         if(id === 'leaderboardPage') loadLeaderboard();
-        window.scrollTo(0,0);
+        if(id === 'infoPage') loadUpdates();
     };
 
     if (currentUser) { showPage('homePage'); updateUI(); } else { showPage('loginPage'); }
@@ -194,54 +190,78 @@
     window.registerUser = async () => {
         const rName = document.getElementById('realName').value.trim();
         const nName = document.getElementById('nickName').value.trim();
-        if(!rName || !nName) return alert("Identify yourself!");
-        const querySnapshot = await getDocs(collection(db, "players"));
-        const id = (querySnapshot.size + 1).toString().padStart(3, '0'); 
-        const userData = { realName: rName, nickName: nName, id: id, points: 0, events: {e0:false, e1:false, e2:false, e3:false, e4:false} };
-        await setDoc(doc(db, "players", id), userData);
-        localStorage.setItem('wyr_user', JSON.stringify(userData));
-        currentUser = userData;
-        showPage('homePage');
-        updateUI();
+        if(!rName || !nName) return alert("Enter names!");
+        const snap = await getDocs(collection(db, "players"));
+        const id = (snap.size + 1).toString().padStart(3, '0'); 
+        const user = { realName: rName, nickName: nName, id: id, points: 0, events: {e0:false, e1:false, e2:false, e3:false, e4:false} };
+        await setDoc(doc(db, "players", id), user);
+        localStorage.setItem('wyr_user', JSON.stringify(user));
+        currentUser = user;
+        showPage('homePage'); updateUI();
     };
 
     function updateUI() {
         if(!currentUser) return;
         document.getElementById('footerUser').innerText = currentUser.nickName.toUpperCase();
         document.getElementById('footerID').innerText = "#" + currentUser.id;
+        document.getElementById('displayId').innerText = "ID: #" + currentUser.id;
         renderEvents();
     }
 
     function renderEvents() {
         const list = document.getElementById('eventList');
-        if(!list) return;
-        list.innerHTML = '';
+        if(!list) return; list.innerHTML = '';
         EVENT_NAMES.forEach((name, i) => {
             const isPart = currentUser.events['e'+i];
-            list.innerHTML += `<div class="event-row"><span class="event-name">${name}</span><div class="status-box ${isPart ? 'participating' : ''}" onclick="toggleEvent(${i})">${isPart ? 'JOINED' : 'JOIN'}</div></div>`;
+            list.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #333;">
+                <span style="font-weight:900;">${name}</span>
+                <div onclick="toggleEvent(${i})" style="padding:10px 15px; border-radius:10px; font-weight:900; background:${isPart ? 'var(--neon-cyan)':'none'}; color:${isPart ? '#000':'#fff'}; border:2px solid ${isPart ? 'var(--neon-cyan)':'#444'}">
+                    ${isPart ? 'JOINED' : 'JOIN'}
+                </div>
+            </div>`;
         });
     }
 
     window.toggleEvent = async (num) => {
-        const key = 'e' + num;
-        const status = !currentUser.events[key];
-        currentUser.points += status ? 1 : -1;
-        currentUser.events[key] = status;
+        const key = 'e' + num; const status = !currentUser.events[key];
+        currentUser.points += status ? 1 : -1; currentUser.events[key] = status;
         await updateDoc(doc(db, "players", currentUser.id), { points: currentUser.points, [`events.${key}`]: status });
-        localStorage.setItem('wyr_user', JSON.stringify(currentUser));
-        renderEvents();
+        localStorage.setItem('wyr_user', JSON.stringify(currentUser)); renderEvents();
     };
+
+    function loadUpdates() {
+        const q = query(collection(db, "updates"), orderBy("time", "desc"));
+        onSnapshot(q, (snap) => {
+            const div = document.getElementById('liveUpdates'); div.innerHTML = '';
+            snap.forEach(d => {
+                const data = d.data();
+                div.innerHTML += `<div class="feed-box">
+                    <span class="feed-owner">OWNER: Ishaan & Yuvraj</span>
+                    <p style="margin-top:5px;">${data.msg}</p>
+                    <span class="feed-time">${data.time ? data.time.toDate().toLocaleString() : 'Just now'}</span>
+                    <button class="del-btn" onclick="deletePost('${d.id}')">X</button>
+                </div>`;
+            });
+        });
+    }
+
+    window.postUpdate = async () => {
+        const msg = document.getElementById('adminMsg').value;
+        if(!msg) return;
+        await addDoc(collection(db, "updates"), { msg: msg, time: serverTimestamp() });
+        document.getElementById('adminMsg').value = '';
+    };
+
+    window.deletePost = async (id) => { if(confirm("Delete this post?")) await deleteDoc(doc(db, "updates", id)); };
 
     function loadParticipants() {
         onSnapshot(collection(db, "players"), (snap) => {
-            let html = '';
-            const players = snap.docs.map(d => d.data());
+            let html = ''; const players = snap.docs.map(d => d.data());
             EVENT_NAMES.forEach((name, i) => {
                 const joined = players.filter(p => p.events['e'+i]);
-                html += `<details class="card" open><summary style="color:var(--neon-cyan); font-weight:900; cursor:pointer;">${name}</summary>
-                    <div style="margin-top:10px; border-left: 2px solid var(--neon-pink); padding-left:15px;">
+                html += `<div class="card"><h4 style="color:var(--neon-cyan); margin-bottom:10px;">${name}</h4>
                     ${joined.length > 0 ? joined.map(p => `<div style="margin-bottom:5px;">${p.nickName} <small style="color:#666">#${p.id}</small></div>`).join('') : 'None'}
-                    </div></details>`;
+                </div>`;
             });
             document.getElementById('participantContent').innerHTML = html;
         });
@@ -250,8 +270,7 @@
     function loadLeaderboard() {
         const q = query(collection(db, "players"), orderBy("points", "desc"));
         onSnapshot(q, (snap) => {
-            let html = '';
-            snap.docs.forEach((doc, idx) => {
+            let html = ''; snap.forEach((doc, idx) => {
                 const p = doc.data();
                 html += `<tr><td>#${idx+1}</td><td>${p.nickName}<br><small style="color:#555">ID:${p.id}</small></td><td>${p.points} PTS</td></tr>`;
             });
