@@ -3,133 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WYR Olympics</title>
+    <title>WYR Olympics Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --neon-cyan: #00f2ff;
-            --neon-pink: #ff00e5;
-            --moon-white: #f0f0f0;
-            --bg-dark: #050505;
-        }
-
+        :root { --neon-cyan: #00f2ff; --neon-pink: #ff00e5; --moon: #fff; --bg: #050505; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: white; overflow-x: hidden; min-height: 100vh; }
+        
+        /* Neon Moon */
+        .moon { position: fixed; top: 30px; right: 30px; width: 60px; height: 60px; background: var(--moon); border-radius: 50%; box-shadow: 0 0 30px var(--neon-cyan); z-index: -1; animation: float 4s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* The Neon Moon Background */
-        .moon {
-            position: fixed;
-            top: 50px;
-            right: 50px;
-            width: 80px;
-            height: 80px;
-            background: var(--moon-white);
-            border-radius: 50%;
-            box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.3), 0 0 100px 20px rgba(0, 242, 255, 0.2);
-            z-index: -1;
-            animation: pulse 4s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .page { display: none; animation: fadeIn 0.5s ease; }
+        .container { max-width: 500px; margin: 0 auto; padding: 25px; text-align: center; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
         .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); margin-bottom: 20px; font-size: 2rem; }
+        .card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(0,242,255,0.2); margin-top: 15px; text-align: left; }
+        
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #333; color: white; border-radius: 8px; font-family: 'Poppins'; }
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: 2px solid var(--neon-cyan); background: transparent; color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s; text-decoration: none; }
+        .btn:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); }
+        .btn-s { padding: 8px; font-size: 0.7rem; border-color: var(--neon-pink); color: var(--neon-pink); margin: 2px; }
 
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan); margin-bottom: 20px; }
-        h2 { font-family: 'Orbitron', sans-serif; margin: 20px 0; color: white; }
+        .event-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
+        .status-box { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; border: 1px solid #444; min-width: 120px; text-align: center; }
+        .participating { background: var(--neon-cyan); color: black; border-color: var(--neon-cyan); font-weight: bold; }
 
-        /* Buttons */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 2px solid var(--neon-cyan);
-            background: transparent;
-            color: var(--neon-cyan);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: var(--neon-cyan);
-            color: black;
-            box-shadow: 0 0 20px var(--neon-cyan);
-        }
-
-        .btn-small { padding: 10px; font-size: 0.8rem; margin: 5px 0; border-color: var(--neon-pink); color: var(--neon-pink); }
-        .btn-small:hover { background: var(--neon-pink); color: white; box-shadow: 0 0 15px var(--neon-pink); }
-
-        /* Forms */
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #111;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .event-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .status-box {
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            border: 1px solid #444;
-        }
-
-        .participating { background: var(--neon-cyan); color: black; border-color: var(--neon-cyan); }
-
-        /* Leaderboard & Participants */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #222; }
-        th { color: var(--neon-cyan); font-family: 'Orbitron'; }
-
-        .player-id { color: var(--neon-pink); font-weight: bold; }
-
+        th { color: var(--neon-cyan); font-family: 'Orbitron'; font-size: 0.8rem; }
+        .nick-tag { color: var(--neon-pink); font-weight: 600; }
+        .id-badge { font-size: 0.7rem; background: #222; padding: 2px 6px; border-radius: 4px; margin-left: 5px; color: #aaa; }
     </style>
 </head>
 <body>
@@ -137,73 +43,63 @@
 <div class="moon"></div>
 
 <div class="container">
-    
     <div id="loginPage" class="page">
         <h1>Register</h1>
-        <p>Enter your details to join WYR Olympics</p>
-        <input type="text" id="realName" placeholder="Real Name : ______">
-        <input type="text" id="nickName" placeholder="Nick Name : ______">
-        <button class="btn" onclick="registerUser()">Enter Hub</button>
+        <input type="text" id="realName" placeholder="Real Name">
+        <input type="text" id="nickName" placeholder="Nick Name">
+        <button class="btn" onclick="registerUser()">Start Journey</button>
     </div>
 
     <div id="homePage" class="page">
         <h1>WYR OLYMPIC</h1>
         <button class="btn" onclick="showPage('registerEventPage')">Register in Event</button>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-            <button class="btn btn-small" onclick="showPage('infoPage')">Event Info</button>
-            <button class="btn btn-small" onclick="showPage('leaderboardPage')">Leaderboard</button>
-            <button class="btn btn-small" onclick="showPage('participantsPage')">Participants</button>
+        <div style="display: flex; justify-content: space-between;">
+            <button class="btn btn-s" onclick="showPage('infoPage')">Info</button>
+            <button class="btn btn-s" onclick="showPage('leaderboardPage')">Leaderboard</button>
+            <button class="btn btn-s" onclick="showPage('participantsPage')">Participants</button>
         </div>
-
         <div class="card">
-            <h3 style="color:var(--neon-cyan)">Organiser Info</h3>
-            <p>Ishaan & Yuvraj</p>
-            <p style="font-size: 0.8rem; margin-top:5px;">For help, contact Ishaan on WhatsApp</p>
-        </div>
-
-        <div class="card">
-            <h3 style="color:var(--neon-cyan)">Details & Rules</h3>
-            <p style="font-size: 0.9rem;">5 Days, 5 Challenges. Individual participation. Participation = +1pt, Winning = +5pts. Top 2 get to spin the reward wheel!</p>
+            <p><strong>Organiser:</strong> Ishaan & Yuvraj</p>
+            <p style="font-size: 0.8rem; color: #aaa;">WhatsApp Ishaan for support.</p>
         </div>
     </div>
 
     <div id="registerEventPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
-        <h1>Register</h1>
-        <h2 id="displayId">Your ID: ---</h2>
-        
-        <div id="eventList">
-            </div>
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; margin-bottom:10px;">← Back</button>
+        <h2 id="displayId" style="color:var(--neon-pink); font-family:'Orbitron';">ID: ---</h2>
+        <div id="eventList"></div>
     </div>
 
     <div id="participantsPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
         <h1>Participants</h1>
         <div id="participantContent"></div>
     </div>
 
     <div id="leaderboardPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
         <h1>Leaderboard</h1>
         <table>
-            <thead>
-                <tr><th>Rank</th><th>Name</th><th>Points</th></tr>
-            </thead>
+            <thead><tr><th>Rank</th><th>Player</th><th>Pts</th></tr></thead>
             <tbody id="leaderboardBody"></tbody>
         </table>
     </div>
 
     <div id="infoPage" class="page">
-        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none; cursor:pointer;">< Back</button>
-        <h2>Event Info</h2>
-        <p class="card">Daily mini-challenges across 5 days. Speed, Gaming, Logic. Details shared daily. No cheating!</p>
+        <button onclick="showPage('homePage')" style="color:grey; background:none; border:none;">← Back</button>
+        <h1>Rules</h1>
+        <div class="card" style="font-size: 0.8rem; line-height: 1.6;">
+            WYR OLYMPICS – 5 Days, 5 Challenges.<br><br>
+            • Participation: +1 Point<br>
+            • Winning: +5 Points<br>
+            • Fair play only. Top 2 get the Reward Wheel!
+        </div>
     </div>
-
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCz9cM7bUCAJnW2cr0qIZxaS60mWgRVAyM",
@@ -219,41 +115,37 @@
 
     let currentUser = JSON.parse(localStorage.getItem('wyr_user')) || null;
 
-    window.showPage = function(pageId) {
+    window.showPage = (id) => {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        if(pageId === 'participantsPage') loadParticipants();
-        if(pageId === 'leaderboardPage') loadLeaderboard();
-    }
+        document.getElementById(id).classList.add('active');
+        if(id === 'participantsPage') loadParticipants();
+        if(id === 'leaderboardPage') loadLeaderboard();
+    };
 
-    if (currentUser) {
+    if (currentUser) { showPage('homePage'); updateUI(); } else { showPage('loginPage'); }
+
+    window.registerUser = async () => {
+        const rName = document.getElementById('realName').value;
+        const nName = document.getElementById('nickName').value;
+        if(!rName || !nName) return alert("Fill both fields!");
+
+        // Sequential ID Logic (001, 002...)
+        const querySnapshot = await getDocs(collection(db, "players"));
+        const count = querySnapshot.size + 1;
+        const id = count.toString().padStart(3, '0'); 
+
+        const userData = { realName: rName, nickName: nName, id: id, points: 0, events: {e1:false, e2:false, e3:false, e4:false, e5:false} };
+        
+        await setDoc(doc(db, "players", id), userData);
+        localStorage.setItem('wyr_user', JSON.stringify(userData));
+        currentUser = userData;
         showPage('homePage');
         updateUI();
-    } else {
-        showPage('loginPage');
-    }
-
-    window.registerUser = async function() {
-        const name = document.getElementById('realName').value;
-        const nick = document.getElementById('nickName').value;
-        if(!name || !nick) return alert("Please enter both Name and Nickname");
-
-        // Create a unique ID based on timestamp for simplicity
-        const id = "ID-" + Math.floor(Math.random() * 900) + 100;
-        const userData = { realName: name, nickName: nick, id: id, points: 0, events: {e1:false, e2:false, e3:false, e4:false, e5:false} };
-        
-        try {
-            await setDoc(doc(db, "players", id), userData);
-            localStorage.setItem('wyr_user', JSON.stringify(userData));
-            currentUser = userData;
-            showPage('homePage');
-            updateUI();
-        } catch (e) { alert("Error: Make sure Firestore Rules are set to Public/Test Mode"); }
-    }
+    };
 
     function updateUI() {
         if(!currentUser) return;
-        document.getElementById('displayId').innerText = "Your ID: " + currentUser.id;
+        document.getElementById('displayId').innerText = "PLAYER ID: " + currentUser.id;
         renderEvents();
     }
 
@@ -261,48 +153,43 @@
         const list = document.getElementById('eventList');
         list.innerHTML = '';
         for(let i=1; i<=5; i++) {
-            const isPart = currentUser.events['e'+i] === true;
+            const isPart = currentUser.events['e'+i];
             list.innerHTML += `
                 <div class="event-row">
                     <span>Event ${i}</span>
                     <div class="status-box ${isPart ? 'participating' : ''}" onclick="toggleEvent(${i})">
                         ${isPart ? 'Joined ✓' : 'Participate?'}
                     </div>
-                </div>
-            `;
+                </div>`;
         }
     }
 
-    window.toggleEvent = async function(eventNum) {
-        const eventKey = 'e' + eventNum;
-        const currentStatus = currentUser.events[eventKey];
-        const newStatus = !currentStatus;
-        const pointChange = newStatus ? 1 : -1;
+    window.toggleEvent = async (num) => {
+        const key = 'e' + num;
+        const status = !currentUser.events[key];
+        currentUser.points += status ? 1 : -1;
+        currentUser.events[key] = status;
 
-        currentUser.points += pointChange;
-        currentUser.events[eventKey] = newStatus;
-
-        try {
-            await updateDoc(doc(db, "players", currentUser.id), {
-                points: currentUser.points,
-                [`events.${eventKey}`]: newStatus
-            });
-            localStorage.setItem('wyr_user', JSON.stringify(currentUser));
-            renderEvents();
-        } catch(e) { console.error(e); }
-    }
+        await updateDoc(doc(db, "players", currentUser.id), {
+            points: currentUser.points,
+            [`events.${key}`]: status
+        });
+        localStorage.setItem('wyr_user', JSON.stringify(currentUser));
+        renderEvents();
+    };
 
     function loadParticipants() {
-        onSnapshot(collection(db, "players"), (snapshot) => {
+        onSnapshot(collection(db, "players"), (snap) => {
             let html = '';
-            const players = snapshot.docs.map(d => d.data());
+            const players = snap.docs.map(d => d.data());
             for(let i=1; i<=5; i++) {
                 const joined = players.filter(p => p.events['e'+i]);
                 html += `
-                <div class="card" style="margin-bottom:10px;">
-                    <strong style="color:var(--neon-pink)">Event ${i} Participants:</strong><br>
-                    ${joined.length > 0 ? joined.map(p => `${p.realName} (#${p.id})`).join(', ') : 'No one yet'}
-                </div>`;
+                <details class="card" open><summary style="color:var(--neon-cyan); cursor:pointer; font-weight:bold;">Event ${i}</summary>
+                    <div style="margin-top:10px;">
+                    ${joined.length > 0 ? joined.map(p => `<div><span class="nick-tag">${p.nickName}</span> <span class="id-badge">${p.id}</span></div>`).join('') : 'No participants yet'}
+                    </div>
+                </details>`;
             }
             document.getElementById('participantContent').innerHTML = html;
         });
@@ -310,16 +197,15 @@
 
     function loadLeaderboard() {
         const q = query(collection(db, "players"), orderBy("points", "desc"));
-        onSnapshot(q, (snapshot) => {
+        onSnapshot(q, (snap) => {
             let html = '';
-            snapshot.docs.forEach((doc, index) => {
+            snap.docs.forEach((doc, idx) => {
                 const p = doc.data();
-                html += `<tr><td>#${index+1}</td><td>${p.realName}</td><td style="color:var(--neon-cyan)">${p.points}</td></tr>`;
+                html += `<tr><td>#${idx+1}</td><td><span class="nick-tag">${p.nickName}</span><br><small>${p.id}</small></td><td style="color:var(--neon-cyan); font-weight:bold;">${p.points}</td></tr>`;
             });
             document.getElementById('leaderboardBody').innerHTML = html;
         });
     }
 </script>
-
 </body>
 </html>
