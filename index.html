@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WYR Olympics | Space Edition</title>
+    <title>WYR Olympics | Official Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --neon-cyan: #00f2ff; --neon-pink: #ff00e5; --moon: #fff; --bg: #020205; }
@@ -18,68 +18,83 @@
             /* Animated Stars Background */
             background-image: 
                 radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            animation: moveStars 60s linear infinite;
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            animation: moveStars 100s linear infinite;
         }
 
         @keyframes moveStars {
-            from { background-position: 0 0, 0 0, 0 0; }
-            to { background-position: 1000px 500px, 400px 400px, 300px 300px; }
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 1000px 500px, 400px 400px; }
         }
 
-        /* Neon Moon with Glow */
         .moon { 
-            position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; 
+            position: fixed; top: 15px; right: 15px; width: 40px; height: 40px; 
             background: var(--moon); border-radius: 50%; 
-            box-shadow: 0 0 20px #fff, 0 0 60px var(--neon-cyan); 
+            box-shadow: 0 0 15px #fff, 0 0 40px var(--neon-cyan); 
             z-index: -1; 
         }
 
-        .container { max-width: 500px; margin: 0 auto; padding: 25px; position: relative; z-index: 1; }
-        .page { display: none; animation: slideUp 0.5s ease-out; }
-        .active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* FIXED MOBILE CONTAINER */
+        .container { 
+            width: 92%; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding: 15px; 
+            position: relative; 
+            z-index: 1; 
+        }
 
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-shadow: 0 0 15px var(--neon-cyan); margin-bottom: 25px; letter-spacing: 2px; }
+        .page { display: none; animation: slideUp 0.4s ease-out; }
+        .active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); margin-bottom: 20px; font-size: 1.8rem; text-align: center; }
         
-        /* Modern Cards */
         .card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px);
-            padding: 20px; border-radius: 15px; 
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(8px);
+            padding: 15px; border-radius: 12px; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            margin-top: 20px; text-align: left; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-top: 15px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
         .btn { 
-            display: block; width: 100%; padding: 16px; margin: 12px 0; 
+            display: block; width: 100%; padding: 14px; margin: 10px 0; 
             border: 2px solid var(--neon-cyan); background: transparent; 
             color: var(--neon-cyan); font-family: 'Orbitron'; font-weight: bold; 
-            cursor: pointer; border-radius: 12px; transition: 0.4s; 
-            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; border-radius: 10px; transition: 0.3s;
         }
-        .btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 30px var(--neon-cyan); transform: translateY(-3px); }
+        .btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); }
 
-        .btn-s { padding: 10px; font-size: 0.75rem; border-color: var(--neon-pink); color: var(--neon-pink); margin: 5px; flex: 1; }
-        .btn-s:hover { background: var(--neon-pink); color: #fff; box-shadow: 0 0 20px var(--neon-pink); }
+        .btn-group { display: flex; gap: 5px; flex-wrap: wrap; }
+        .btn-s { padding: 8px; font-size: 0.7rem; border-color: var(--neon-pink); color: var(--neon-pink); flex: 1; min-width: 80px; }
 
-        input { width: 100%; padding: 14px; margin: 10px 0; background: rgba(0,0,0,0.5); border: 1px solid #333; color: white; border-radius: 10px; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
+        input { width: 100%; padding: 12px; margin: 8px 0; background: rgba(0,0,0,0.6); border: 1px solid #444; color: white; border-radius: 8px; font-size: 1rem; }
 
-        .event-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .status-box { padding: 8px 16px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; border: 1px solid #555; transition: 0.3s; }
-        .participating { background: var(--neon-cyan); color: #000; border-color: var(--neon-cyan); font-weight: bold; box-shadow: 0 0 15px var(--neon-cyan); }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
-        th { color: var(--neon-cyan); font-family: 'Orbitron'; font-size: 0.8rem; }
-        .nick-tag { color: var(--neon-pink); font-weight: 600; text-shadow: 0 0 5px rgba(255, 0, 229, 0.3); }
+        /* FIXED MOBILE ROWS */
+        .event-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            gap: 10px;
+        }
+        .event-name { font-weight: 600; font-size: 0.9rem; flex: 1; }
         
-        .back-link { color: #888; text-decoration: none; font-size: 0.9rem; cursor: pointer; display: inline-block; margin-bottom: 15px; }
-        .back-link:hover { color: #fff; }
+        .status-box { 
+            padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; 
+            cursor: pointer; border: 1px solid #666; transition: 0.2s;
+            text-align: center; min-width: 100px;
+        }
+        .participating { background: var(--neon-cyan); color: #000; border-color: var(--neon-cyan); font-weight: bold; }
+
+        /* FIXED TABLE FOR MOBILE */
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { padding: 10px 5px; text-align: left; border-bottom: 1px solid #222; font-size: 0.85rem; word-wrap: break-word; }
+        th { color: var(--neon-cyan); font-family: 'Orbitron'; font-size: 0.75rem; }
+        .nick-tag { color: var(--neon-pink); font-weight: 600; }
+        
+        .back-link { color: #888; font-size: 0.8rem; cursor: pointer; display: block; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -88,63 +103,57 @@
 
 <div class="container">
     <div id="loginPage" class="page">
-        <h1>ACCESS GRANTED</h1>
-        <p style="color:#888; margin-bottom: 20px;">Initialize your Olympic Profile</p>
-        <input type="text" id="realName" placeholder="Enter Real Name...">
-        <input type="text" id="nickName" placeholder="Choose Nickname...">
-        <button class="btn" onclick="registerUser()">Launch Hub</button>
+        <h1>REGISTER</h1>
+        <input type="text" id="realName" placeholder="Real Name">
+        <input type="text" id="nickName" placeholder="Nick Name">
+        <button class="btn" onclick="registerUser()">ENTER OLYMPICS</button>
     </div>
 
     <div id="homePage" class="page">
         <h1>WYR OLYMPIC</h1>
         <button class="btn" onclick="showPage('registerEventPage')">Register in Event</button>
-        <div style="display: flex;">
+        <div class="btn-group">
             <button class="btn btn-s" onclick="showPage('infoPage')">Rules</button>
-            <button class="btn btn-s" onclick="showPage('leaderboardPage')">Leaderboard</button>
+            <button class="btn btn-s" onclick="showPage('leaderboardPage')">Points</button>
             <button class="btn btn-s" onclick="showPage('participantsPage')">Players</button>
         </div>
         <div class="card">
-            <h3 style="color:var(--neon-cyan); margin-bottom: 10px;">COMMAND CENTER</h3>
-            <p><strong>Organisers:</strong> Ishaan & Yuvraj</p>
-            <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">For instant support, contact Ishaan on WhatsApp.</p>
+            <p><strong>Organiser:</strong> Ishaan & Yuvraj</p>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Contact Ishaan on WhatsApp for help.</p>
         </div>
     </div>
 
     <div id="registerEventPage" class="page">
-        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
-        <h2 id="displayId" style="color:var(--neon-pink); font-family:'Orbitron'; margin-bottom: 20px;">ID: ---</h2>
+        <span class="back-link" onclick="showPage('homePage')">← BACK</span>
+        <h2 id="displayId" style="color:var(--neon-pink); font-family:'Orbitron'; font-size:1.2rem;">ID: ---</h2>
         <div id="eventList"></div>
     </div>
 
     <div id="participantsPage" class="page">
-        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
-        <h1>PARTICIPANTS</h1>
+        <span class="back-link" onclick="showPage('homePage')">← BACK</span>
+        <h1>PLAYERS</h1>
         <div id="participantContent"></div>
     </div>
 
     <div id="leaderboardPage" class="page">
-        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
+        <span class="back-link" onclick="showPage('homePage')">← BACK</span>
         <h1>LEADERBOARD</h1>
-        <div class="card" style="padding: 0;">
+        <div class="card" style="padding: 5px;">
             <table>
-                <thead><tr><th>RANK</th><th>PLAYER</th><th>POINTS</th></tr></thead>
+                <thead><tr><th style="width:20%">RNK</th><th style="width:55%">PLAYER</th><th style="width:25%">PTS</th></tr></thead>
                 <tbody id="leaderboardBody"></tbody>
             </table>
         </div>
     </div>
 
     <div id="infoPage" class="page">
-        <span class="back-link" onclick="showPage('homePage')">← RETURN HOME</span>
-        <h1>RULES & INFO</h1>
-        <div class="card">
-            <h3 style="color:var(--neon-pink)">WYR OLYMPICS DETAILS</h3>
-            <p style="font-size: 0.9rem; line-height: 1.8; margin-top: 10px;">
-                Welcome to the 5-day challenge! Here is what you need to know:<br><br>
-                <strong>1. Points System:</strong> Joining an event gives you +1 point. Winning the event gives you an extra +5 points.<br>
-                <strong>2. Fair Play:</strong> Cheating or duplicate accounts will result in immediate disqualification.<br>
-                <strong>3. Rewards:</strong> At the end of 5 days, the top 2 players will spin the <strong>Golden Wheel</strong> for cash prizes.<br><br>
-                <em>Personal Info:</em> This event is hosted by Ishaan and Yuvraj for our community.
-            </p>
+        <span class="back-link" onclick="showPage('homePage')">← BACK</span>
+        <h1>RULES</h1>
+        <div class="card" style="font-size: 0.85rem; line-height: 1.6;">
+            <strong>1. Points:</strong> Participate = +1 | Win = +5<br>
+            <strong>2. Prizes:</strong> Top 2 players spin the reward wheel!<br>
+            <strong>3. Integrity:</strong> No cheating or double accounts.<br><br>
+            <em>Hosted by Ishaan and Yuvraj.</em>
         </div>
     </div>
 </div>
@@ -153,7 +162,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, doc, setDoc, updateDoc, collection, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // --- CHANGE YOUR EVENT NAMES HERE ---
     const EVENT_NAMES = ["Gaming Clash", "Speed Logic", "Mystery Task", "Skill Shot", "Final Showdown"];
 
     const firebaseConfig = {
@@ -182,7 +190,7 @@
     window.registerUser = async () => {
         const rName = document.getElementById('realName').value.trim();
         const nName = document.getElementById('nickName').value.trim();
-        if(!rName || !nName) return alert("Fill both fields!");
+        if(!rName || !nName) return alert("Enter both names!");
 
         const querySnapshot = await getDocs(collection(db, "players"));
         const id = (querySnapshot.size + 1).toString().padStart(3, '0'); 
@@ -198,7 +206,7 @@
 
     function updateUI() {
         if(!currentUser) return;
-        document.getElementById('displayId').innerText = "PLAYER ID: " + currentUser.id;
+        document.getElementById('displayId').innerText = "ID: " + currentUser.id;
         renderEvents();
     }
 
@@ -209,9 +217,9 @@
             const isPart = currentUser.events['e'+i];
             list.innerHTML += `
                 <div class="event-row">
-                    <span style="font-weight:600">${name}</span>
+                    <span class="event-name">${name}</span>
                     <div class="status-box ${isPart ? 'participating' : ''}" onclick="toggleEvent(${i})">
-                        ${isPart ? 'JOINED ✓' : 'PARTICIPATE?'}
+                        ${isPart ? 'JOINED' : 'JOIN?'}
                     </div>
                 </div>`;
         });
@@ -238,9 +246,9 @@
             EVENT_NAMES.forEach((name, i) => {
                 const joined = players.filter(p => p.events['e'+i]);
                 html += `
-                <details class="card" open style="cursor:pointer;"><summary style="color:var(--neon-cyan); font-weight:bold; font-family:'Orbitron'; font-size:0.9rem;">${name}</summary>
-                    <div style="margin-top:12px; padding-left: 10px; border-left: 2px solid var(--neon-pink);">
-                    ${joined.length > 0 ? joined.map(p => `<div style="margin-bottom:5px;"><span class="nick-tag">${p.nickName}</span> <span style="font-size:0.7rem; color:#666;">#${p.id}</span></div>`).join('') : '<span style="color:#555">Waiting for heroes...</span>'}
+                <details class="card" open><summary style="color:var(--neon-cyan); font-weight:bold; font-size:0.85rem;">${name}</summary>
+                    <div style="margin-top:8px; border-left: 2px solid var(--neon-pink); padding-left:10px;">
+                    ${joined.length > 0 ? joined.map(p => `<div style="margin-bottom:4px; font-size:0.8rem;"><span class="nick-tag">${p.nickName}</span> <small style="color:#666">#${p.id}</small></div>`).join('') : '<span style="color:#444; font-size:0.7rem;">None</span>'}
                     </div>
                 </details>`;
             });
@@ -255,8 +263,8 @@
             snap.docs.forEach((doc, idx) => {
                 const p = doc.data();
                 html += `<tr>
-                    <td style="font-weight:bold; color:${idx < 3 ? 'var(--neon-cyan)' : '#888'}">#${idx+1}</td>
-                    <td><span class="nick-tag">${p.nickName}</span><br><small style="color:#555">ID: ${p.id}</small></td>
+                    <td>#${idx+1}</td>
+                    <td><span class="nick-tag">${p.nickName}</span><br><small style="font-size:0.65rem; color:#555">ID:${p.id}</small></td>
                     <td style="color:var(--neon-cyan); font-weight:bold;">${p.points}</td>
                 </tr>`;
             });
